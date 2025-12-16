@@ -21,10 +21,10 @@
     --color-border-secondary: #d1d5db;
     --color-border-glass: rgba(255, 255, 255, 0.2);
     
-    --color-accent-primary: #a855f7;
-    --color-accent-secondary: #9333ea;
-    --color-accent-tertiary: #7e22ce;
-    --color-accent-light: #e9d5ff;
+    --color-accent-primary: #6749f4;
+    --color-accent-secondary: #5a3dd8;
+    --color-accent-tertiary: #4d35c0;
+    --color-accent-light: #e0d9ff;
     
     --color-primary-500: #22c55e;
     --color-primary-600: #16a34a;
@@ -35,30 +35,39 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
     --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    
+    /* Neumorphism Shadows - Light Mode */
+    --neumorphism-shadow-dark: 20px 20px 60px #d1d5db, -20px -20px 60px #ffffff;
+    --neumorphism-shadow-light: 25px 25px 70px #d1d5db, -25px -25px 70px #ffffff;
+    
+    /* Button Neumorphism Shadows - Light Mode */
+    --button-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+    --button-shadow-active: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+    --button-active-color: #666666;
   }
 
   [data-theme='dark'] {
-    /* Dark Mode Colors */
+    /* Dark Mode Colors - More black, less blue */
     --color-bg-primary: #000000;
-    --color-bg-secondary: #030712;
-    --color-bg-tertiary: #111827;
+    --color-bg-secondary: #0a0a0a;
+    --color-bg-tertiary: #1a1a1a;
     --color-bg-overlay: rgba(0, 0, 0, 0.6);
-    --color-bg-glass: rgba(255, 255, 255, 0.05);
-    --color-bg-glass-hover: rgba(255, 255, 255, 0.08);
+    --color-bg-glass: rgba(255, 255, 255, 0.03);
+    --color-bg-glass-hover: rgba(255, 255, 255, 0.06);
     
     --color-text-primary: #ffffff;
-    --color-text-secondary: #d1d5db;
-    --color-text-tertiary: #9ca3af;
+    --color-text-secondary: #a0a0a0;
+    --color-text-tertiary: #707070;
     --color-text-inverse: #111827;
     
-    --color-border-primary: #374151;
-    --color-border-secondary: #4b5563;
-    --color-border-glass: rgba(255, 255, 255, 0.1);
+    --color-border-primary: #2a2a2a;
+    --color-border-secondary: #333333;
+    --color-border-glass: rgba(255, 255, 255, 0.08);
     
-    --color-accent-primary: #a855f7;
-    --color-accent-secondary: #9333ea;
-    --color-accent-tertiary: #7e22ce;
-    --color-accent-light: #e9d5ff;
+    --color-accent-primary: #6749f4;
+    --color-accent-secondary: #5a3dd8;
+    --color-accent-tertiary: #4d35c0;
+    --color-accent-light: #e0d9ff;
     
     --color-primary-500: #22c55e;
     --color-primary-600: #16a34a;
@@ -69,6 +78,15 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
     --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    
+    /* Neumorphism Shadows - Dark Mode (more visible, smaller spread) */
+    --neumorphism-shadow-dark: 10px 10px 30px rgba(0, 0, 0, 0.8), -10px -10px 30px rgba(255, 255, 255, 0.05);
+    --neumorphism-shadow-light: 12px 12px 35px rgba(0, 0, 0, 0.9), -12px -12px 35px rgba(255, 255, 255, 0.08);
+    
+    /* Button Neumorphism Shadows - Dark Mode */
+    --button-shadow: 6px 6px 12px rgba(0, 0, 0, 0.6), -6px -6px 12px rgba(255, 255, 255, 0.03);
+    --button-shadow-active: inset 4px 4px 12px rgba(0, 0, 0, 0.6), inset -4px -4px 12px rgba(255, 255, 255, 0.03);
+    --button-active-color: #a0a0a0;
   }
 
   body {
@@ -76,6 +94,54 @@
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Custom scrollbar for table on mobile */
+  .table-scroll::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .table-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .table-scroll::-webkit-scrollbar-thumb {
+    background: var(--color-border-primary);
+    border-radius: 4px;
+  }
+
+  .table-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--color-border-secondary);
+  }
+
+  /* Firefox scrollbar */
+  .table-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-primary) transparent;
+  }
+
+  /* Mobile table body flex column */
+  @media (max-width: 767px) {
+    .mobile-flex-col {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .mobile-flex-row {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .mobile-flex-col {
+      display: table-row-group;
+    }
+    
+    .mobile-flex-row {
+      display: table-row;
+    }
   }
 }
 

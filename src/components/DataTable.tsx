@@ -103,11 +103,11 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4 px-6">
-        <div className="text-text-secondary flex-1 text-sm">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 py-4 px-4 sm:px-6">
+        <div className="text-text-secondary text-sm text-center sm:text-left">
           {table.getFilteredRowModel().rows.length} of {data.length} row(s)
         </div>
-        <div className="space-x-2">
+        <div className="flex items-center justify-center space-x-2">
           <Button
             variant="outline"
             size="sm"

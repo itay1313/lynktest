@@ -1,4 +1,5 @@
 import { X } from 'lucide-react'
+import { createPortal } from 'react-dom'
 import { Button } from '../design-system/Button'
 import { Card } from '../design-system/Card'
 
@@ -10,8 +11,8 @@ interface HelpModalProps {
 export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+  const modalContent = (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-8">
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-[var(--color-bg-overlay)] backdrop-blur-sm"
@@ -19,24 +20,27 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
       />
       
       {/* Modal */}
-      <Card className="relative z-10 max-w-2xl w-full backdrop-blur-2xl bg-bg-glass border-border-glass max-h-[90vh] overflow-y-auto">
+      <Card 
+        className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-auto backdrop-blur-2xl bg-[var(--color-bg-glass)] border-[var(--color-border-glass)] mx-auto"
+        onClick={(e) => e?.stopPropagation()}
+      >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-text-primary">AI Question Log</h2>
+          <h2 className="text-h2 font-semibold text-[var(--color-text-primary)]">AI Question Log</h2>
           <button
             onClick={onClose}
-            className="text-text-secondary hover:text-text-primary transition-colors"
+            className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
           >
             <X className="h-6 w-6" />
           </button>
         </div>
         
-        <div className="space-y-4 text-text-secondary">
+        <div className="space-y-4 text-[var(--color-text-secondary)]">
           <p className="text-lg">
             View and manage all questions asked to the AI system
           </p>
           
           <div className="space-y-3">
-            <h3 className="text-text-primary font-semibold text-lg">Features:</h3>
+            <h3 className="text-[var(--color-text-primary)] font-semibold text-lg">Features:</h3>
             <ul className="list-disc list-inside space-y-2 ml-2">
               <li>View all questions asked to the AI system</li>
               <li>Filter questions by timestamp (start and end date)</li>
@@ -46,11 +50,12 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             </ul>
           </div>
           
-          <div className="pt-4 border-t border-border-glass">
+          <div className="pt-6 mt-6 border-t border-[var(--color-border-glass)]">
             <Button
               variant="outline"
               size="sm"
               onClick={onClose}
+              className="border-[var(--color-border-glass)] text-[var(--color-text-primary)] hover:bg-[var(--color-bg-glass-hover)]"
             >
               Got it
             </Button>
@@ -59,5 +64,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
       </Card>
     </div>
   )
+
+  return createPortal(modalContent, document.body)
 }
 

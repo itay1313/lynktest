@@ -1,7 +1,7 @@
 import React from 'react'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline'
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
   children: React.ReactNode
 }
@@ -21,13 +21,59 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props
 }) => {
-  const baseStyles = 'font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
+  const baseStyles = 'font-medium rounded-lg transition-all duration-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
   
-  const variants = {
-    primary: 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500',
-    secondary: 'bg-text-secondary text-text-primary hover:bg-text-tertiary focus:ring-accent-primary',
-    outline: 'border-2 border-accent-primary text-accent-primary hover:bg-accent-light/20 focus:ring-accent-primary bg-transparent'
+  const getVariantStyles = () => {
+    if (variant === 'primary') {
+      return {
+        className: 'bg-bg-secondary text-text-primary border border-bg-secondary',
+        style: {
+          boxShadow: 'var(--button-shadow)'
+        },
+        activeStyle: {
+          boxShadow: 'var(--button-shadow-active)',
+          color: 'var(--button-active-color)'
+        }
+      }
+    } else if (variant === 'secondary') {
+      return {
+        className: 'bg-bg-tertiary text-text-primary border border-bg-tertiary',
+        style: {
+          boxShadow: 'var(--button-shadow)'
+        },
+        activeStyle: {
+          boxShadow: 'var(--button-shadow-active)',
+          color: 'var(--button-active-color)'
+        }
+      }
+    } else if (variant === 'ghost') {
+      // ghost variant - no shadow, minimal styling
+      return {
+        className: 'bg-transparent text-text-secondary hover:bg-transparent hover:text-accent-primary border-none',
+        style: {
+          boxShadow: 'none'
+        },
+        activeStyle: {
+          boxShadow: 'none',
+          color: ''
+        }
+      }
+    } else {
+      // outline variant
+      return {
+        className: 'bg-transparent text-accent-primary border-2 border-accent-primary',
+        style: {
+          boxShadow: 'var(--button-shadow)'
+        },
+        activeStyle: {
+          boxShadow: 'var(--button-shadow-active)',
+          color: 'var(--button-active-color)'
+        }
+      }
+    }
   }
+  
+  const variantStyles = getVariantStyles()
   
   const sizes = {
     sm: 'px-3 py-1.5 text-sm',
@@ -37,7 +83,19 @@ export const Button: React.FC<ButtonProps> = ({
   
   return (
     <button
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`${baseStyles} ${variantStyles.className} ${sizes[size]} ${className}`}
+      style={variantStyles.style}
+      onMouseDown={(e) => {
+        Object.assign(e.currentTarget.style, variantStyles.activeStyle)
+      }}
+      onMouseUp={(e) => {
+        e.currentTarget.style.boxShadow = variantStyles.style.boxShadow
+        e.currentTarget.style.color = ''
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = variantStyles.style.boxShadow
+        e.currentTarget.style.color = ''
+      }}
       {...props}
     >
       {children}

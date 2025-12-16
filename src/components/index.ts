@@ -10,6 +10,7 @@ export { default as MagicBento } from './MagicBento'
 export { BentoCard, BentoGrid } from './BentoGrid'
 export type { BentoCardProps, BentoGridProps } from './BentoGrid'
 export { Sidebar } from './Sidebar'
+export { Logo } from './Logo'
 
 // Data Components
 export { DataTable } from './DataTable'

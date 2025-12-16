@@ -10,6 +10,7 @@
  * - Table: Data table with customizable columns
  * - Input: Form input with label and error handling
  * - Badge: Status indicator with color variants
+ * - Toggle: Neumorphic toggle switch component
  */
 
 export { Button } from './Button'
@@ -26,4 +27,26 @@ export type { InputProps } from './Input'
 
 export { Badge } from './Badge'
 export type { BadgeProps } from './Badge'
+
+export { Toggle } from './Toggle'
+export type { ToggleProps } from './Toggle'
+
+export { 
+  Typography,
+  Display1,
+  Display2,
+  H1,
+  H2,
+  H3,
+  H4,
+  Body,
+  Heading1,
+  Heading2,
+  Heading3,
+  Heading4,
+  BodyLarge,
+  BodySmall,
+  Caption
+} from './Typography'
+export type { TypographyProps, H1Props, H2Props, H3Props, H4Props, BodyProps } from './Typography'
 
