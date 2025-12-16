@@ -6,7 +6,6 @@
 
 // Layout Components
 export { default as BottomNavigation } from './BottomNavigation'
-export { default as MagicBento } from './MagicBento'
 export { BentoCard, BentoGrid } from './BentoGrid'
 export type { BentoCardProps, BentoGridProps } from './BentoGrid'
 export { Sidebar } from './Sidebar'
