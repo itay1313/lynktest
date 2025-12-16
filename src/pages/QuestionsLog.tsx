@@ -6,7 +6,7 @@ import { mockQuestions } from '../data/mockData'
 import BottomNavigation from '../components/BottomNavigation'
 import { DataTable } from '../components/DataTable'
 import { Sidebar } from '../components/Sidebar'
-import { useSidebar } from '../contexts/SidebarContext'
+import { useSidebar } from '../contexts/useSidebar'
 import { type ColumnDef } from '@tanstack/react-table'
 import { ArrowUpDown } from 'lucide-react'
 

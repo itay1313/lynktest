@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
 import { FilterOptions } from '../types'
-import { useSidebar } from '../contexts/SidebarContext'
+import { useSidebar } from '../contexts/useSidebar'
 
 interface SidebarProps {
   searchQuery: string

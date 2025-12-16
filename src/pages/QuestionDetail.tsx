@@ -4,7 +4,7 @@ import { Card, Button, Badge, H1, H2, H4, Body } from '../design-system'
 import { mockQuestions } from '../data/mockData'
 import BottomNavigation from '../components/BottomNavigation'
 import { Sidebar } from '../components/Sidebar'
-import { useSidebar } from '../contexts/SidebarContext'
+import { useSidebar } from '../contexts/useSidebar'
 import { FilterOptions } from '../types'
 
 const QuestionDetail = () => {
